@@ -1,6 +1,4 @@
 This is a collection of code snippets
-<<<<<<< HEAD
-=======
 
 ### Installing Oh-My-Zsh
 ```
@@ -13,4 +11,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
  sudo dpkg -i path/to/the/file
  ```
 
->>>>>>> 4cdd6754c0abe442dd4ad7452f801d6c28170649
+### Uninstalling a package
+```
+sudo apt-get --purge package-name
+```
+
