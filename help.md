@@ -22,3 +22,12 @@ sudo apt-get --purge package-name
 sudo apt-get install nodejs-legacy
 sudo apt-get install npm
 ```
+
+
+### Getting started with vue.js
+#### Using the CDN
+```
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+```
+
+
