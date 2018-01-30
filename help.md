@@ -17,4 +17,8 @@ chsh -s /bin/zsh
 ```
 sudo apt-get --purge package-name
 ```
-
+### Install node js
+```
+sudo apt-get install nodejs-legacy
+sudo apt-get install npm
+```
