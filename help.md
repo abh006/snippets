@@ -31,3 +31,12 @@ sudo apt-get install npm
 ```
 
 
+
+### Start your first react app
+```
+npm install create-react-app
+create-react-app app-name
+cd app-name
+npm start
+```
+
