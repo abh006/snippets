@@ -61,12 +61,12 @@ sudo nano /etc/systemd/system/mongodb.service
 Paste the script below
 ```
     [Unit]
-				Description=High-performance, schema-free document-oriented database
-				After=network.target
+    Description=High-performance, schema-free document-oriented database
+    After=network.target
 
-				[Service]
-				User=mongodb
-				ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+    [Service]
+    User=mongodb
+    ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
 
     [Install]
     WantedBy=multi-user.target
