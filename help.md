@@ -53,23 +53,20 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 ```
 
-We have to create a new mongodb systemd service file in the '/lib/systemd/system' directory. Go to that directory and create the new mongodb service file 'mongod.service' with nano.
+We have to create a new mongodb systemd service file in the `/lib/systemd/system` directory. Go to that directory and create the new mongodb service file `mongod.service` with nano.
 
 ```
-cd /lib/systemd/system/
-nano mongod.service
+sudo nano /etc/systemd/system/mongodb.service
 ```
 Paste the script below
 ```
     [Unit]
-    Description=High-performance, schema-free document-oriented database
-    After=network.target
-    Documentation=https://docs.mongodb.org/manual
+				Description=High-performance, schema-free document-oriented database
+				After=network.target
 
-    [Service]
-    User=mongodb
-    Group=mongodb
-    ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+				[Service]
+				User=mongodb
+				ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
 
     [Install]
     WantedBy=multi-user.target
