@@ -23,6 +23,15 @@ sudo apt-get install nodejs-legacy
 sudo apt-get install npm
 ```
 
+### Uninstalling a package
+####  This removes  all but config files
+```
+sudo apt-get remove <package-name>
+```
+#### This removes everything
+```
+sudo apt-get purge <package-name>
+```
 
 ### Getting started with vue.js
 #### Using the CDN
