@@ -82,3 +82,42 @@ systemctl daemon-reload
 systemctl start mongod
 systemctl enable mongod
 ```
+
+
+### Setting up nginx
+```
+sudo apt-get install nginx nginx-full nginx-common
+```
+then reboot system
+Check the firewall and allow nginx HTTP
+```
+sudo ufw app list
+sudo ufw allow 'Nginx HTTP'
+sudo ufw status
+```
+If ufw is inactive enable it
+```
+sudo ufw enable
+```
+
+Whenever you create a new server, just add them into the conf.d directory `/etc/nginx/conf.d/`
+```
+sudo nano /etc/nginx/conf.d/myWebsite.d
+```
+Put a specific server config in that file
+```
+server {
+    listen 8080;
+    server_name localhost;
+    location / {
+        root    /path/to/the/folder/;
+        index   index.html index.htm;
+    }
+
+    #redirect server error pages to the static pages /50x.html
+    error_page 500 502 503 504  /50x.html;
+    location = /50x.html{
+        root html;
+    }
+}
+
