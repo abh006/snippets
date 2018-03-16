@@ -12,11 +12,6 @@ chsh -s /bin/zsh
  ```
  sudo dpkg -i path/to/the/file
  ```
-
-### Uninstalling a package
-```
-sudo apt-get --purge package-name
-```
 ### Install node js
 ```
 sudo apt-get install nodejs-legacy
