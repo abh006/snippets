@@ -122,7 +122,7 @@ server {
 }
 ```
 
-###Setting up rubu on rails
+### Setting up rubu on rails
 #### Install rvm and ruby first
 ```
 sudo apt-get install software-properties-common
@@ -131,11 +131,11 @@ sudo apt-get update
 sudo apt-get install rvm
 rvm install ruby
 ```
-####Install rails using gem 
+#### Install rails using gem 
 ```
 gem install rails
 ```
-####Create an app 
+#### Create an app 
 ```
 rails new <app-name>
 ```
