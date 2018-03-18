@@ -120,4 +120,24 @@ server {
         root html;
     }
 }
+```
+
+###Setting up rubu on rails
+#### Install rvm and ruby first
+```
+sudo apt-get install software-properties-common
+sudo apt-add-repository -y ppa:rael-gc/rvm
+sudo apt-get update
+sudo apt-get install rvm
+rvm install ruby
+```
+####Install rails using gem 
+```
+gem install rails
+```
+####Create an app 
+```
+rails new <app-name>
+```
+
 
