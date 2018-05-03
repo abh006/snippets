@@ -122,7 +122,7 @@ server {
 }
 ```
 
-### Setting up rubu on rails
+### Setting up ruby on rails
 #### Install rvm and ruby first
 ```
 sudo apt-get install software-properties-common
@@ -141,3 +141,37 @@ rails new <app-name>
 ```
 
 
+### Deploying a python telegram bot in heroku
+`https://hackernoon.com/how-to-create-and-deploy-a-telegram-bot-2addd8aec6b4`
+this is a very nice article about deployment
+
+navigate to the project folder
+```
+pip freeze > requirements.txt
+```
+now create a `Procfile`  ( but for windows it is `Procfile.windows`)
+it should contain 
+```
+web: python my_bot_name.py
+```
+Also add an __init__.py to the project folder. It can be empty
+Push the project to a git repository
+Install Heroku CLI
+```
+npm install heroku -g
+```
+To verify the installation, try `heroku --version`
+Create an account in `heroku.com`
+Now follow these steps
+```
+heroku login
+heroku create
+git push heroku master
+heroku ps:scale web=1
+heroku open
+```
+Now your project runs on heroku server
+To check the logs
+```
+heroku logs --trail
+```
