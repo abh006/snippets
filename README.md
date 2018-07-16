@@ -197,3 +197,11 @@ Also create a soft link to `/etc/nginx/sites-enabled/` like:
 sudo ln /etc/nginx/sites-available/app /etc/nginx/sites-enabled/app
 ```
 Delete any unwanted files inside the `sites-available` and `sites-enabled` folders
+
+
+If you want to use the forwarded hostname as the proxy header
+Add this inside the `location / { .... }`
+```
+proxy_redirect http://kutt.com/ http://0.0.0.0:8090;
+proxy_set_header Host $host;
+```
