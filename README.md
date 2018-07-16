@@ -175,3 +175,25 @@ To check the logs
 ```
 heroku logs --trail
 ```
+
+
+
+### port forwarding using nginx
+Create a new config file inside `/etc/nginx/sites-available/`
+if the name of th config file is `app`
+Then the config file will be
+`/etc/nginx/sites-available/app`
+```
+server{
+    listen 80;
+    server_name domain.com
+    location / {
+        proxy_pass "http://0.0.0.0:8080"
+    }
+}
+```
+Also create a soft link to `/etc/nginx/sites-enabled/` like:
+```
+sudo ln /etc/nginx/sites-available/app /etc/nginx/sites-enabled/app
+```
+Delete any unwanted files inside the `sites-available` and `sites-enabled` folders
