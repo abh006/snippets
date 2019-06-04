@@ -221,3 +221,10 @@ Drop the database if it exists and create a new one
 ```
 psql <db-name> < output-file.bak
 ```
+#### It may cause errors like ProgrammingError: permission denied for relation django_migrations
+Try this 
+```
+psql mydatabase -c "GRANT ALL ON ALL TABLES IN SCHEMA public to dbuser;"
+psql mydatabase -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to dbuser;"
+psql mydatabase -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to dbuser;"
+```
