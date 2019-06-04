@@ -205,3 +205,19 @@ Add this inside the `location / { .... }`
 proxy_redirect http://kutt.com/ http://0.0.0.0:8090;
 proxy_set_header Host $host;
 ```
+
+###Backup and Restore postgres database
+####Backup
+```
+pg_dump <db-name> > output-file.bak
+```
+If it is from docker container
+```
+sudo docker container ls    // to get container id
+sudo docker exec -it <container-id> pg_dump -U <db-user> <db-name> > bkup.bak
+```
+####Restore
+Drop the database if it exists and create a new one
+```
+psql <db-name> < output-file.bak
+```
