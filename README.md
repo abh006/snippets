@@ -228,3 +228,24 @@ psql mydatabase -c "GRANT ALL ON ALL TABLES IN SCHEMA public to dbuser;"
 psql mydatabase -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to dbuser;"
 psql mydatabase -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to dbuser;"
 ```
+
+### Setting up OpenCV in Ubuntu 18.04 ( For C++ )
+
+One of the best documentation for opencv installation goes here: ( It takes several minutes to make and install ).
+
+While installing, keep in mind that, you have to install it globally instead of installing it in any particular folder
+
+https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html
+
+After installing that you will be able to include the header file `opencv2/opencv.hpp`
+
+If you are facing any issues in importing them, 
+try finding the path in which opencv is installed
+if it is in `/usr/local/include/opencv4/`
+
+Then export the CPATH 
+```
+export CPATH=/usr/local/include/opencv4/
+```
+Now the issue will be solved
+
