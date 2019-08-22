@@ -249,3 +249,40 @@ export CPATH=/usr/local/include/opencv4/
 ```
 Now the issue will be solved
 
+
+
+### Installing graphics.h in Ubuntu 18.04 
+
+```
+sudo apt-get install build-essential
+
+sudo apt-get install libsdl-image1.2 libsdl-image1.2-dev guile-2.0 \
+guile-2.0-dev libsdl1.2debian libart-2.0-dev libaudiofile-dev \
+libesd0-dev libdirectfb-dev libdirectfb-extra libfreetype6-dev \
+libxext-dev x11proto-xext-dev libfreetype6 libaa1 libaa1-dev \
+libslang2-dev libasound2 libasound2-dev
+```
+
+Download libgraph file from this link
+http://download.savannah.gnu.org/releases/libgraph/libgraph-1.0.2.tar.gz
+
+Extract it and cd into it
+
+```
+./configure
+make
+sudo make install
+sudo cp /usr/local/lib/libgraph.* /usr/lib
+```
+
+Now you will be able to use graphics.h library
+
+But still might be getting error while using methods like initgraph(), etc.
+For that you have to include the header file while compiling also
+Like:
+```
+g++ filename.cpp -lgraph
+```
+
+Now you will be able to Use all those methods.
+There is a chance for unexpected abortion of the process, while running some programs. If you find any, raise an issue, along with the code and the obtained output :)
