@@ -286,3 +286,66 @@ g++ filename.cpp -lgraph
 
 Now you will be able to Use all those methods.
 There is a chance for unexpected abortion of the process, while running some programs. If you find any, raise an issue, along with the code and the obtained output :)
+
+
+
+### Setup Supervisor and Deploy django server
+```
+sudo apt-get install supervisor
+sudo service supervisor restart
+```
+
+Now check where the configuration file is to be added
+Open the config file of supervisor at `/etc/supervisor/supervisord.conf`
+Look for a line like:
+```
+[include]
+files = /etc/supervisor/conf.d/*.conf
+```
+It means all the `.conf` files inside that folder will be considered by supervisor.
+
+Now add a new config file in that, for the new server
+```
+sudo nano /etc/supervisor/conf.d/project-name.conf
+```
+And in that file 
+```
+[program:projectname]
+command=/home/ubuntu/myprojenv/bin/gunicorn --workers 3 --bind 0.0.0.0:8001 myproject.wsgi
+directory=/home/ubuntu/myproject
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/projectname.err.log
+stdout_logfile=/var/log/projectname.out.log
+```
+This will create a new gunicorn process which runs the wsgi on 80001 port
+
+Check the specified log files if required
+
+The `projectname` specified will be used for further usages like starting, stopping or restarting the process.
+
+After creating this file,bring these changes into effect:
+```
+sudo supervisorctl reread
+sudo supervisorctl update
+```
+For verifying whether everything is fine:
+```
+ps ax | grep gunicorn
+```
+There might be several processes running, or go to `0.0.0.0:8001`
+
+You can also try 
+```
+sudo supervisorctl status myproject
+```
+All set!!!
+
+Now you can use 
+```
+sudo supervisorctl start projectname
+sudo supervisorctl stop projectname
+sudo supervisorctl restart projectname
+```
+for managing the process
+
