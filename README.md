@@ -349,3 +349,51 @@ sudo supervisorctl restart projectname
 ```
 for managing the process
 
+### Installing CARLA
+```
+sudo apt-get update
+sudo apt-get install wget software-properties-common
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+sudo apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-7 main"
+sudo apt-get update
+sudo apt-get install build-essential clang-7 lld-7 g++-7 cmake ninja-build libvulkan1 python python-pip python-dev python3-dev python3-pip libpng16-dev libtiff5-dev libjpeg-dev tzdata sed curl unzip autoconf libtool rsync
+pip2 install --user setuptools
+pip3 install --user setuptools
+```
+For Ubuntu 18.04, change `libpng16-dev` to `libpng-dev` from the previous example.
+
+```
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-7/bin/clang++ 170
+sudo update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-7/bin/clang 170
+
+```
+#### Build Unreal Engine
+Unreal Engine repositories are set to private. In order to gain access you need to add your GitHub username when you sign up at www.unrealengine.com.
+Download and compile Unreal Engine 4.22. Here we will assume you install it at ~/UnrealEngine_4.22, but you can install it anywhere, just replace the path where necessary.
+```
+git clone --depth=1 -b 4.22 https://github.com/EpicGames/UnrealEngine.git ~/UnrealEngine_4.22
+cd ~/UnrealEngine_4.22
+./Setup.sh && ./GenerateProjectFiles.sh && make
+```
+#### Build CARLA
+```
+git clone https://github.com/carla-simulator/carla
+```
+Now you need to download the assets package,(note that this package is >3GB)
+Optionally you can download aria2 (with `sudo apt-get install aria2`) so the following command will take advantage of it and will run quite faster.
+```
+./Update.sh
+```
+For CARLA to find your Unreal Engine's installation folder you need to set the following environment variable
+```
+export UE4_ROOT=~/UnrealEngine_4.22
+```
+Now that the environment is set up, you can use make to run different commands and build the different modules
+```
+make launch     # Compiles the simulator and launches Unreal Engine's Editor.
+make PythonAPI  # Compiles the PythonAPI module necessary for running the Python examples.
+make package    # Compiles everything and creates a packaged version able to run without UE4 editor.
+make help       # Print all available commands.
+```
+For more info: https://carla.readthedocs.io/en/latest/how_to_build_on_linux/
