@@ -349,9 +349,6 @@ sudo supervisorctl restart projectname
 ```
 for managing the process
 
-<<<<<<< HEAD
-###
-=======
 ### Installing CARLA
 ```
 sudo apt-get update
@@ -400,4 +397,45 @@ make package    # Compiles everything and creates a packaged version able to run
 make help       # Print all available commands.
 ```
 For more info: https://carla.readthedocs.io/en/latest/how_to_build_on_linux/
->>>>>>> eb51c64048330efac492555d9da25bfe22741d02
+
+### Deploying Node JS appication using systemd
+**Create a ```systemd``` service file**
+
+```
+sudo nano /lib/systemd/system/hello_env.service
+```
+It should contain the following lines:
+```
+[Unit]
+Description=hello_env.js - making your environment variables rad
+Documentation=https://example.com
+After=network.target
+
+[Service]
+Environment=NODE_PORT=3001
+Type=simple
+User=ubuntu
+ExecStart=/usr/bin/node /home/ubuntu/server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+For more information about what these lines really mean, follow https://nodesource.com/blog/running-your-node-js-app-with-systemd-part-1/
+
+Since we have changed the service files of ```systemd```, we have to reload the daemon.
+```
+sudo systemctl daemon-reload
+```
+Now, for starting the service we added, 
+```
+sudo systemctl start hello_env
+```
+Just like any other services,
+```
+sudo systemctl status hello_env   # for getting the status
+sudo systemctl stop hello_env     # stop the service
+sudo systemctl restart hello_env  # restart the service
+sudo systemctl enable hello_env   # wont start immediately but will start once the system boots
+sudo systemctl disable hell_env   # similar to enable
+```
